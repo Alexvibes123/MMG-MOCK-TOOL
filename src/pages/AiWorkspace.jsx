@@ -402,61 +402,12 @@ export default function AiWorkspace() {
         </div>
       </div>
 
-      {/* Two-column layout: content + sidebar summary */}
-      <div style={{ flex:1, minHeight:0, display:"flex", overflow:"hidden" }}>
-        {/* Main scrollable content */}
-        <div style={{ flex:1, overflowY:"auto", padding:24, background:"#f8fafc" }}>
-          {tab==="Agents"      && <AgentsTab />}
-          {tab==="Automations" && <AutomationsTab />}
-          {tab==="Permissions" && <PermissionsTab />}
-          {tab==="Activity"    && <ActivityTab />}
-          {tab==="Audit Log"   && <AuditLogTab />}
-        </div>
-
-        {/* Right sidebar — context panel */}
-        <div style={{ width:260, flexShrink:0, borderLeft:"1px solid #e5e7eb", background:"white", overflowY:"auto", padding:20 }}>
-          <p style={{ fontSize:12, fontWeight:700, color:"#374151", textTransform:"uppercase", letterSpacing:1, margin:"0 0 16px" }}>Workspace Summary</p>
-
-          {/* Active agents */}
-          <div style={{ marginBottom:20 }}>
-            <p style={{ fontSize:11, fontWeight:600, color:"#9ca3af", margin:"0 0 8px" }}>ACTIVE AGENTS</p>
-            {AGENT_CATALOG.filter(a=>a.status==="active").map(a => (
-              <div key={a.id} style={{ display:"flex", alignItems:"center", gap:8, marginBottom:8 }}>
-                <div style={{ width:8, height:8, borderRadius:"50%", background:a.color, flexShrink:0 }} />
-                <div style={{ flex:1, minWidth:0 }}>
-                  <p style={{ fontSize:12, fontWeight:600, color:"#111827", margin:0, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{a.name}</p>
-                  <p style={{ fontSize:11, color:"#9ca3af", margin:0 }}>{a.actionsToday} actions today</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Recent activity */}
-          <div style={{ marginBottom:20 }}>
-            <p style={{ fontSize:11, fontWeight:600, color:"#9ca3af", margin:"0 0 8px" }}>RECENT ACTIVITY</p>
-            {ACTIVITY_FEED.slice(0,5).map(item => (
-              <div key={item.id} style={{ marginBottom:10, paddingBottom:10, borderBottom:"1px solid #f3f4f6" }}>
-                <p style={{ fontSize:12, fontWeight:600, color:"#111827", margin:0 }}>{item.action}</p>
-                <p style={{ fontSize:11, color:"#6b7280", margin:"2px 0", lineHeight:1.4, overflow:"hidden", display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical" }}>{item.detail}</p>
-                <p style={{ fontSize:10, color:"#9ca3af", margin:0 }}>{item.time}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Running automations */}
-          <div>
-            <p style={{ fontSize:11, fontWeight:600, color:"#9ca3af", margin:"0 0 8px" }}>RUNNING AUTOMATIONS</p>
-            {ALL_AUTOMATIONS.filter(a=>a.active).map(a => (
-              <div key={a.id} style={{ display:"flex", alignItems:"flex-start", gap:8, marginBottom:8 }}>
-                <div style={{ width:6, height:6, borderRadius:"50%", background:"#10b981", flexShrink:0, marginTop:4 }} />
-                <div>
-                  <p style={{ fontSize:12, fontWeight:600, color:"#111827", margin:0 }}>{a.name}</p>
-                  <p style={{ fontSize:11, color:"#9ca3af", margin:0 }}>Last: {a.lastRun}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      <div style={{ flex:1, minHeight:0, overflowY:"auto", padding:24, background:"#f8fafc" }}>
+        {tab==="Agents"      && <AgentsTab />}
+        {tab==="Automations" && <AutomationsTab />}
+        {tab==="Permissions" && <PermissionsTab />}
+        {tab==="Activity"    && <ActivityTab />}
+        {tab==="Audit Log"   && <AuditLogTab />}
       </div>
     </div>
   );
