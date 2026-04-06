@@ -223,26 +223,72 @@ export default function SmartDocAccess() {
 
   return (
     <div style={{ display:"flex", height:"100%" }}>
-      {/* Sidebar chat history — narrower */}
+
+      {/* ── SIDEBAR ── */}
       <div style={{ width:176, flexShrink:0, display:"flex", flexDirection:"column", background:"#0F1B2D", borderRight:"1px solid #1e3050" }}>
         <div style={{ padding:12 }}>
-          <button style={{ width:"100%", background:"#2E75B6", color:"white", fontSize:12, borderRadius:6, padding:"8px 0", border:"none", fontWeight:600, cursor:"pointer" }}>+ New Chat</button>
-          <input style={{ width:"100%", marginTop:8, fontSize:11, borderRadius:6, padding:"6px 8px", outline:"none", background:"#1B2A4A", color:"#c8ddf4", border:"none", boxSizing:"border-box" }} placeholder="Search chats..." />
+          {/* Ghost button — no loud blue fill */}
+          <button style={{
+            width:"100%",
+            background:"transparent",
+            color:"#7eb3e8",
+            fontSize:12,
+            borderRadius:6,
+            padding:"7px 0",
+            border:"1px solid #2a4a6e",
+            fontWeight:600,
+            cursor:"pointer",
+          }}>+ New Chat</button>
+
+          <input style={{
+            width:"100%",
+            marginTop:8,
+            fontSize:11,
+            borderRadius:6,
+            padding:"6px 8px",
+            outline:"none",
+            background:"#162236",
+            color:"#c8ddf4",
+            border:"1px solid #1e3050",
+            boxSizing:"border-box",
+          }} placeholder="Search chats..." />
         </div>
+
         <div style={{ flex:1, overflowY:"auto", padding:"0 8px 8px" }}>
           {PAST_CHATS.map((c, i) => (
-            <div key={c.id} style={{ display:"flex", alignItems:"flex-start", gap:4, padding:8, borderRadius:6, cursor:"pointer", marginBottom:2, background:i===0?"#1B2A4A":"transparent" }}>
+            <div key={c.id} style={{
+              display:"flex",
+              alignItems:"flex-start",
+              gap:4,
+              padding:"8px 8px 8px 10px",
+              borderRadius:6,
+              cursor:"pointer",
+              marginBottom:2,
+              background: i === 0 ? "rgba(46,117,182,0.08)" : "transparent",
+              borderLeft: i === 0 ? "2px solid #2E75B6" : "2px solid transparent",
+            }}>
               <div style={{ flex:1, minWidth:0 }}>
-                <p style={{ fontSize:11, fontWeight:600, margin:0, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap", color:i===0?"#fff":"#c8ddf4" }}>{c.label}</p>
-                <p style={{ fontSize:11, color:"#7eb3e8", margin:"2px 0 0" }}>{c.date}</p>
+                <p style={{
+                  fontSize:11,
+                  fontWeight: i === 0 ? 600 : 400,
+                  margin:0,
+                  overflow:"hidden",
+                  textOverflow:"ellipsis",
+                  whiteSpace:"nowrap",
+                  color: i === 0 ? "#fff" : "#8aafd4",
+                }}>{c.label}</p>
+                <p style={{ fontSize:11, color:"#4a6a96", margin:"2px 0 0" }}>{c.date}</p>
               </div>
-              <span style={{ color:c.saved?"#60a5fa":"#4a6a96", fontSize:13 }}>{c.saved?"★":"☆"}</span>
+              {/* Dimmed stars — don't compete */}
+              <span style={{ color: c.saved ? "#4a7aaa" : "#2a4060", fontSize:13 }}>
+                {c.saved ? "★" : "☆"}
+              </span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Main panel */}
+      {/* ── MAIN PANEL ── */}
       <div style={{ flex:1, display:"flex", flexDirection:"column", minWidth:0, background:"#f8fafc" }}>
         {/* Tab bar */}
         <div style={{ background:"white", borderBottom:"1px solid #e5e7eb", padding:"0 16px", display:"flex", gap:4 }}>
@@ -254,7 +300,7 @@ export default function SmartDocAccess() {
           ))}
         </div>
 
-        {/* Content — centered with max width so it doesn't stretch too wide */}
+        {/* Content */}
         <div style={{ flex:1, overflowY:"auto", display:"flex", justifyContent:"center" }}>
           <div style={{ width:"100%", maxWidth:860 }}>
             {activeTab==="actions" && (
