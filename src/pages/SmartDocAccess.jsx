@@ -225,17 +225,16 @@ export default function SmartDocAccess() {
     <div style={{ display:"flex", height:"100%" }}>
 
       {/* ── SIDEBAR ── */}
-      <div style={{ width:176, flexShrink:0, display:"flex", flexDirection:"column", background:"#0F1B2D", borderRight:"1px solid #1e3050" }}>
-        <div style={{ padding:12 }}>
-          {/* Ghost button — no loud blue fill */}
+      <div style={{ width:190, flexShrink:0, display:"flex", flexDirection:"column", background:"white", borderRight:"1px solid #e5e7eb" }}>
+        <div style={{ padding:"12px 10px 8px" }}>
           <button style={{
             width:"100%",
-            background:"transparent",
-            color:"#7eb3e8",
+            background:"#2E75B6",
+            color:"white",
             fontSize:12,
             borderRadius:6,
-            padding:"7px 0",
-            border:"1px solid #2a4a6e",
+            padding:"8px 0",
+            border:"none",
             fontWeight:600,
             cursor:"pointer",
           }}>+ New Chat</button>
@@ -247,14 +246,14 @@ export default function SmartDocAccess() {
             borderRadius:6,
             padding:"6px 8px",
             outline:"none",
-            background:"#162236",
-            color:"#c8ddf4",
-            border:"1px solid #1e3050",
+            background:"#f9fafb",
+            color:"#374151",
+            border:"1px solid #e5e7eb",
             boxSizing:"border-box",
           }} placeholder="Search chats..." />
         </div>
 
-        <div style={{ flex:1, overflowY:"auto", padding:"0 8px 8px" }}>
+        <div style={{ flex:1, overflowY:"auto", padding:"4px 8px 8px" }}>
           {PAST_CHATS.map((c, i) => (
             <div key={c.id} style={{
               display:"flex",
@@ -264,7 +263,7 @@ export default function SmartDocAccess() {
               borderRadius:6,
               cursor:"pointer",
               marginBottom:2,
-              background: i === 0 ? "rgba(46,117,182,0.08)" : "transparent",
+              background: i === 0 ? "#eff6ff" : "transparent",
               borderLeft: i === 0 ? "2px solid #2E75B6" : "2px solid transparent",
             }}>
               <div style={{ flex:1, minWidth:0 }}>
@@ -275,12 +274,11 @@ export default function SmartDocAccess() {
                   overflow:"hidden",
                   textOverflow:"ellipsis",
                   whiteSpace:"nowrap",
-                  color: i === 0 ? "#fff" : "#8aafd4",
+                  color: i === 0 ? "#1e40af" : "#6b7280",
                 }}>{c.label}</p>
-                <p style={{ fontSize:11, color:"#4a6a96", margin:"2px 0 0" }}>{c.date}</p>
+                <p style={{ fontSize:11, color:"#9ca3af", margin:"2px 0 0" }}>{c.date}</p>
               </div>
-              {/* Dimmed stars — don't compete */}
-              <span style={{ color: c.saved ? "#4a7aaa" : "#2a4060", fontSize:13 }}>
+              <span style={{ color: c.saved ? "#2E75B6" : "#d1d5db", fontSize:13 }}>
                 {c.saved ? "★" : "☆"}
               </span>
             </div>
