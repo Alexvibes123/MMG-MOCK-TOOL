@@ -223,8 +223,8 @@ export default function SmartDocAccess() {
 
   return (
     <div style={{ display:"flex", height:"100%" }}>
-      {/* Sidebar chat history */}
-      <div style={{ width:208, flexShrink:0, display:"flex", flexDirection:"column", background:"#0F1B2D", borderRight:"1px solid #1e3050" }}>
+      {/* Sidebar chat history — narrower */}
+      <div style={{ width:176, flexShrink:0, display:"flex", flexDirection:"column", background:"#0F1B2D", borderRight:"1px solid #1e3050" }}>
         <div style={{ padding:12 }}>
           <button style={{ width:"100%", background:"#2E75B6", color:"white", fontSize:12, borderRadius:6, padding:"8px 0", border:"none", fontWeight:600, cursor:"pointer" }}>+ New Chat</button>
           <input style={{ width:"100%", marginTop:8, fontSize:11, borderRadius:6, padding:"6px 8px", outline:"none", background:"#1B2A4A", color:"#c8ddf4", border:"none", boxSizing:"border-box" }} placeholder="Search chats..." />
@@ -254,18 +254,20 @@ export default function SmartDocAccess() {
           ))}
         </div>
 
-        {/* Content */}
-        <div style={{ flex:1, overflowY:"auto" }}>
-          {activeTab==="actions" && (
-            <QuickActionsPanel onAction={p => { setInputVal(p); setActiveTab("search"); }} onUpload={() => setShowUpload(true)} />
-          )}
-          {activeTab !== "actions" && (
-            <div style={{ padding:24, maxWidth:700 }}>
-              {activeTab==="search" && <SearchExample />}
-              {activeTab==="draft"  && <DraftExample />}
-              {activeTab==="report" && <ReportExample />}
-            </div>
-          )}
+        {/* Content — centered with max width so it doesn't stretch too wide */}
+        <div style={{ flex:1, overflowY:"auto", display:"flex", justifyContent:"center" }}>
+          <div style={{ width:"100%", maxWidth:860 }}>
+            {activeTab==="actions" && (
+              <QuickActionsPanel onAction={p => { setInputVal(p); setActiveTab("search"); }} onUpload={() => setShowUpload(true)} />
+            )}
+            {activeTab !== "actions" && (
+              <div style={{ padding:24 }}>
+                {activeTab==="search" && <SearchExample />}
+                {activeTab==="draft"  && <DraftExample />}
+                {activeTab==="report" && <ReportExample />}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Input bar */}
